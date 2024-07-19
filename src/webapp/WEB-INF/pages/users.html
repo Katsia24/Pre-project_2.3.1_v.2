@@ -84,74 +84,64 @@
     </style>
 
 </head>
-<body>
-<h1>Table of users</h1>
+    <body>
+        <h1>Table of users</h1>
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>email</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
 
-<div class="container">
+                <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.id}">Id</td>
+                        <td th:text="${user.firstName}">firstName</td>
+                        <td th:text="${user.lastName}">lastName</td>
+                        <td th:text="${user.email}">email</td>
+                        <td>
+                            <form method="post" action="/deleteUser">
+                                <button type="submit" name="id" th:value="${user.id}">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>email</th>
-            <th>Delete</th>
-            <th>Update</th>
-        </tr>
-        </thead>
+            <form method="post" action="/addUser">
+                <label for="firstName_add">First Name</label>
+                <input name="firstName" type="text" id="firstName_add">
+                <br>
+                <label for="lastName_add">Last Name</label>
+                <input name="lastName" type="text" id="lastName_add">
+                <br>
+                <label for="email_add">User Email</label>
+                <input name="email" type="text" id="email_add">
+                <br>
+                <input type="submit" value="Add User">
+            </form>
 
-        <tbody>
-        <tr th:each="user : ${userList}">
-            <td th:text="${user.id}">Id</td>
-            <td th:text="${user.firstName}">firstName</td>
-            <td th:text="${user.lastName}">lastName</td>
-            <td th:text="${user.email}">email</td>
-            <td>
-                <form method="post" action="/deleteUser">
-                    <button type="submit" name="id" th:value="${user.id}">Delete</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            <form method="post" action="/updateUser">
+                <label for="id_update">User ID</label>
+                <input name="id" type="number" id="id_update">
+                <br>
+                <label for="firstName_update">First Name</label>
+                <input name="firstName" type="text" id="firstName_update">
+                <br>
+                <label for="lastName_update">Last Name</label>
+                <input name="lastName" type="text" id="lastName_update">
+                <br>
+                <label for="email_update">User Email</label>
+                <input name="email" type="text" id="email_update">
+                <br>
+                <input type="submit" value="Update User">
+            </form>
 
-    <form method="post" action="/addUser">
-        <label for="firstName_add">First Name</label>
-        <input name="firstName" type="text" id="firstName_add">
-        <br>
-        <label for="lastName_add">Last Name</label>
-        <input name="lastName" type="text" id="lastName_add">
-        <br>
-        <label for="email_add">User Email</label>
-        <input name="email" type="text" id="email_add">
-        <br>
-        <input type="submit" value="Add User">
-    </form>
-
-<!--    <form method="post" action="/deleteUser">-->
-<!--        <label for="id_delete">User ID</label>-->
-<!--        <input name="id" type="text" id="id_delete">-->
-<!--        <br>-->
-<!--        <input type="submit" value="Delete User">-->
-<!--    </form>-->
-
-    <form method="post" action="/updateUser">
-        <label for="id_update">User ID</label>
-        <input name="id" type="number" id="id_update">
-        <br>
-        <label for="firstName_update">First Name</label>
-        <input name="firstName" type="text" id="firstName_update">
-        <br>
-        <label for="lastName_update">Last Name</label>
-        <input name="lastName" type="text" id="lastName_update">
-        <br>
-        <label for="email_update">User Email</label>
-        <input name="email" type="text" id="email_update">
-        <br>
-        <input type="submit" value="Update User">
-    </form>
-
-</div>
-</body>
+        </div>
+    </body>
 </html>
