@@ -96,6 +96,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>email</th>
+            <th>Action</th>
         </tr>
         </thead>
 
@@ -105,6 +106,18 @@
             <td th:text="${user.firstName}">firstName</td>
             <td th:text="${user.lastName}">lastName</td>
             <td th:text="${user.email}">email</td>
+            <td>
+                <a href="/updateUser?id=${user.id}">Edit</a>
+                <a href="/deleteUser?id=${user.id}">Delete</a>
+            </td>
+            <td>
+
+                <form method="post" action="/deleteUser">
+<!--                    <input type="hidden" name="id" th:value="${user.id}">-->
+                    <button type="submit" name="id" th:value="${user.id}">Delete</button>
+                </form>
+
+            </td>
         </tr>
         </tbody>
     </table>

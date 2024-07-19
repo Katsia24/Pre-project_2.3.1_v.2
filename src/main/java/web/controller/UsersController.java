@@ -19,7 +19,7 @@ public class UsersController {
     }
 
     @GetMapping(value = "/users")
-    public String printUsersN(ModelMap model) {
+    public String printUsers(ModelMap model) {
         model.addAttribute("userList", userService.listUsers());
         return "users";
     }
@@ -34,10 +34,7 @@ public class UsersController {
 
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") Long id) {
-        User user = userService.findById(id);
-        if (user != null) {
-            userService.delete(user);
-        }
+        userService.delete(userService.findById(id));
         return "redirect:/users";
     }
 
