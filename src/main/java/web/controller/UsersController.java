@@ -40,7 +40,9 @@ public class UsersController {
 
     @PostMapping("/updateUser")
     public String updateUser(@ModelAttribute User user) {
-        userService.update(user);
+        if (userService.findById(user.getId()) != null) {
+            userService.update(user);
+        }
         return "redirect:/users";
     }
 
